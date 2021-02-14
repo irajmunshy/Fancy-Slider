@@ -38,15 +38,19 @@ const getImages = (query) => {
     toggleGallerySpinner(true);
 }
 
-let slideIndex = 0;
+let slideIndex = 0, countImage = 0;
 const selectItem = (event, img) => {
   let element = event.target;
   element.classList.toggle('added');
 
   let item = sliders.indexOf(img);
   if (item === -1) {
+    countImage++;
+    document.getElementById('count-image').innerText = countImage;
     sliders.push(img);
   } else {
+    countImage--;
+    document.getElementById('count-image').innerText = countImage;
     const select = event.target;
     for (let i = 0; i < sliders.length; i++) {
       if (sliders[i] === select.src) {
